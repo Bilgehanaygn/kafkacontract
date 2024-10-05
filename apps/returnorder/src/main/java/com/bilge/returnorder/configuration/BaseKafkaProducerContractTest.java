@@ -1,0 +1,44 @@
+package com.bilge.returnorder.configuration;
+
+import com.bilge.returnorder.returnorder.domain.ReturnOrderEvent;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.cloud.contract.verifier.messaging.boot.AutoConfigureMessageVerifier;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.testcontainers.containers.KafkaContainer;
+import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
+
+import java.math.BigDecimal;
+import java.util.UUID;
+
+
+@ExtendWith(SpringExtension.class)
+@AutoConfigureMessageVerifier
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE, classes = {KafkaMessageVerifier.class, KafkaProducerTestConfig.class})
+@Testcontainers
+@Import(KafkaProducerService.class)
+public abstract class BaseKafkaProducerContractTest<T extends CustomEvent> {
+
+  @Autowired
+  private KafkaProducerService kafkaProducerService;
+
+  @ServiceConnection
+  static KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"))
+    .withKraft();
+
+
+  static {
+    kafka.start();
+    System.setProperty("spring.kafka.bootstrap-servers", kafka.getBootstrapServers());
+  }
+
+    public void create(){
+      var returnOrderEvent = new ReturnOrderEvent(UUID.randomUUID(), UUID.randomUUID(), "random product 1", BigDecimal.TEN);
+      kafkaProducerService.publishReturnOrderEvent(returnOrderEvent);
+    }
+
+}

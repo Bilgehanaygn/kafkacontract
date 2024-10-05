@@ -1,0 +1,8 @@
+rootProject.name = 'kafkacontract'
+include 'apps'
+include 'apps'
+include 'apps:payment'
+findProject(':apps:payment')?.name = 'payment'
+include 'apps:returnorder'
+findProject(':apps:returnorder')?.name = 'returnorder'
+
