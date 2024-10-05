@@ -3,7 +3,7 @@ plugins {
     id 'groovy'
     id 'org.springframework.boot' version '3.3.2'
     id 'io.spring.dependency-management' version '1.1.6'
-    id 'com.coditory.integration-test' version '1.4.5'
+    id 'com.coditory.integration-test' version '1.5.0'
 
     id "org.springframework.cloud.contract" version "4.0.0"
 }
@@ -40,15 +40,6 @@ dependencies {
 
 }
 
-
-test {
-    useJUnitPlatform()
-}
-
-tasks.named('integrationTest') {
-    useJUnitPlatform()
-}
-
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
@@ -58,4 +49,20 @@ java {
 contracts {
     baseClassForTests = "com.bilge.returnorder.configuration.BaseKafkaProducerContractTest"
     contractsDslDir = file("src/integration/resources/contracts")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.named('integrationTest') {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+}
+
+tasks.named('contractTest') {
+    useJUnitPlatform()
 }

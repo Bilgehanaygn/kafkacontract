@@ -1,6 +1,5 @@
 package com.bilge.returnorder.returnorder.domain;
 
-import com.bilge.returnorder.configuration.CustomEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReturnOrderEvent implements Serializable, CustomEvent {
+public class ReturnOrderEvent implements Serializable {
 
   @Serial
   private static final long serialVersionUID = 1L;
