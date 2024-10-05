@@ -1,11 +1,12 @@
 package com.bilge.returnorder.configuration;
 
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import java.util.Map;
 
-@Configuration
+@TestConfiguration
 public class KafkaTopicsConfig {
 
   private final ApplicationContext applicationContext;
@@ -17,6 +18,7 @@ public class KafkaTopicsConfig {
   @Bean
   public String[] allTopics() {
     Map<String, BaseProducer> producerBeans = applicationContext.getBeansOfType(BaseProducer.class);
+
     return producerBeans.values().stream()
       .map(BaseProducer::getTopic).distinct().toArray(String[]::new);
   }

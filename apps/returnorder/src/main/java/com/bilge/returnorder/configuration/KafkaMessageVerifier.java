@@ -32,7 +32,7 @@ public class KafkaMessageVerifier implements MessageVerifierReceiver<Message<?>>
     return messageQueue.poll(timeout, timeUnit);
   }
 
-  @KafkaListener(topics = "#{@allTopics}")
+  @KafkaListener(topics = "#{@allTopics}", groupId = "random")
   public void listen(Message<?> payload, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
     broker.putIfAbsent(topic, new ArrayBlockingQueue<>(10));
     BlockingQueue<Message<?>> messageQueue = broker.get(topic);
