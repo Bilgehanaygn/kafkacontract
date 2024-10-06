@@ -1,4 +1,4 @@
-package com.bilge.returnorder.configuration;
+package com.bilge.returnorder.configuration.test;
 
 import lombok.SneakyThrows;
 import org.springframework.cloud.contract.verifier.converter.YamlContract;

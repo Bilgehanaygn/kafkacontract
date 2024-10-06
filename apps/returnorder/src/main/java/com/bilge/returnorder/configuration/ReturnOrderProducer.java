@@ -1,5 +1,6 @@
 package com.bilge.returnorder.configuration;
 
+import com.bilge.returnorder.configuration.kafka.BaseProducer;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import com.bilge.returnorder.returnorder.domain.ReturnOrderEvent;
@@ -17,7 +18,6 @@ public class ReturnOrderProducer implements BaseProducer {
 
   public void publishReturnOrderEvent(ReturnOrderEvent returnOrderEvent) {
     kafkaTemplate.send(TOPIC, returnOrderEvent.getOrderId().toString(), returnOrderEvent);
-    System.out.println("Published ReturnOrderEvent: " + returnOrderEvent);
   }
 
   @Override
@@ -25,3 +25,5 @@ public class ReturnOrderProducer implements BaseProducer {
     return TOPIC;
   }
 }
+
+

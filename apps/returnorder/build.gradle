@@ -47,8 +47,12 @@ java {
 }
 
 contracts {
-    baseClassForTests = "com.bilge.returnorder.configuration.BaseKafkaProducerContractTest"
+    baseClassForTests = "com.bilge.returnorder.configuration.test.BaseKafkaProducerContractTest"
     contractsDslDir = file("src/integration/resources/contracts")
+}
+
+tasks.named('contractTest') {
+    useJUnitPlatform()
 }
 
 test {
@@ -61,8 +65,4 @@ tasks.named('integrationTest') {
         events "passed", "skipped", "failed"
         showStandardStreams = true
     }
-}
-
-tasks.named('contractTest') {
-    useJUnitPlatform()
 }

@@ -15,7 +15,7 @@ import java.util.UUID;
 public class ReturnOrderEvent implements Serializable {
 
   @Serial
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1587253L;
 
   private UUID orderId;
   private UUID productId;

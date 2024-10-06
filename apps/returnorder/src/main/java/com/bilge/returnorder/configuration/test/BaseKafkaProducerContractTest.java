@@ -1,6 +1,7 @@
-package com.bilge.returnorder.configuration;
+package com.bilge.returnorder.configuration.test;
 
-import com.bilge.returnorder.ReturnOrderApplication;
+import com.bilge.returnorder.configuration.kafka.KafkaTopicsConfig;
+import com.bilge.returnorder.configuration.ReturnOrderProducer;
 import com.bilge.returnorder.returnorder.domain.ReturnOrderEvent;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,4 @@ public abstract class BaseKafkaProducerContractTest {
     var returnOrderEvent = new ReturnOrderEvent(UUID.randomUUID(), UUID.randomUUID(), "random product 1", BigDecimal.TEN);
     returnOrderProducer.publishReturnOrderEvent(returnOrderEvent);
   }
-
 }

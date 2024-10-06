@@ -1,4 +1,4 @@
-package com.bilge.returnorder.configuration;
+package com.bilge.returnorder.configuration.test;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

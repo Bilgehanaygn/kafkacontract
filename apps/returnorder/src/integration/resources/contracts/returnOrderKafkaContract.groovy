@@ -13,14 +13,11 @@ Contract.make {
 
     outputMessage {
         sentTo('return-order')
-        headers {
-            header('contentType', 'application/json')
-        }
         body([
                 orderId     : $(consumer(regex(uuid())), producer(anyUuid())),
                 productId   : $(consumer(regex(uuid())), producer(anyUuid())),
-                productName : $(consumer(anyNonBlankString()), producer("Sample Product")),
-                price       : $(consumer(regex('[0-9]+(\\.[0-9]{1,2})?')), producer("99.99"))
+                productName : $(consumer(anyNonBlankString()), producer(anyNonBlankString())),
+                price       : $(consumer(regex('[0-9]+(\\.[0-9]{1,2})?')), producer(anyNumber()))
         ])
     }
 }
