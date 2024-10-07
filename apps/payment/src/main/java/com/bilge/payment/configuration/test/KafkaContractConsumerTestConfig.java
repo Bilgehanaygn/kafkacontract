@@ -47,18 +47,12 @@ public class KafkaContractConsumerTestConfig {
 
   @Bean
   @Primary
-  JsonMessageConverter noopMessageConverter() {
-    return new NoopJsonMessageConverter();
-  }
-}
-
-class NoopJsonMessageConverter extends JsonMessageConverter {
-
-  NoopJsonMessageConverter() {
-  }
-
-  @Override
-  protected Object convertPayload(Message<?> message) {
-    return message.getPayload();
+  JsonMessageConverter messageConverter() {
+    return new JsonMessageConverter(){
+      @Override
+      protected Object convertPayload(Message<?> message) {
+        return message.getPayload();
+      }
+    };
   }
 }

@@ -23,14 +23,13 @@ public abstract class BaseKafkaContractConsumerTest {
   protected StubTrigger stubTrigger;
 
   @ServiceConnection
-  static KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"))
+  static KafkaContainer kafka = new KafkaContainer(
+    DockerImageName.parse("confluentinc/cp-kafka:latest"))
     .withKraft();
 
 
   static {
     kafka.start();
     System.setProperty("spring.kafka.bootstrap-servers", kafka.getBootstrapServers());
-    System.out.println("blabla");
   }
-
 }
