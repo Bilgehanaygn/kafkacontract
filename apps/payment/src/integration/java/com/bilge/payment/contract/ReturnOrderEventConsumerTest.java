@@ -24,24 +24,13 @@ import static org.mockito.Mockito.*;
 @SpringBootTest(classes = ReturnOrderListener.class)
 public class ReturnOrderEventConsumerTest extends BaseKafkaContractConsumerTest {
 
-  @Autowired
-  private ApplicationContext applicationContext;
-
   @MockBean
   RefundService refundService;
 
   @Test
   void returnOrderEventConsumesSuccessfully() {
-    // List all beans in the context
-    String[] beanNames = applicationContext.getBeanDefinitionNames();
-    Arrays.sort(beanNames);
-    System.out.println("Beans in application context:");
-    for (String beanName : beanNames) {
-      System.out.println(beanName);
-    }
-
     stubTrigger.trigger("returnOrderEvent");
-    System.out.println("blasladas");
+
     verify(refundService, timeout(10000).times(1)).processReturnOrderAndRefund(any());
   }
 }

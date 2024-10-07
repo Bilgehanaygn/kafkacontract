@@ -18,9 +18,9 @@ repositories {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'com.bilge' as Publication
-            artifactId = 'returnorder' as Publication
-            version = '1.0-SNAPSHOT' as Publication
+            groupId = 'com.bilge'
+            artifactId = 'returnorder'
+            version = '1.0-SNAPSHOT'
 
             def verifierTask = tasks.named('verifierStubsJar', Jar)
 

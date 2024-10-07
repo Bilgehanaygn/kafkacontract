@@ -15,5 +15,5 @@ public class ReturnOrderEvent implements Serializable {
   private UUID orderId;
   private UUID productId;
   private String productName;
-  private BigDecimal price;
+  private Double price;
 }

@@ -30,6 +30,7 @@ public abstract class BaseKafkaContractConsumerTest {
   static {
     kafka.start();
     System.setProperty("spring.kafka.bootstrap-servers", kafka.getBootstrapServers());
+    System.out.println("blabla");
   }
 
 }
