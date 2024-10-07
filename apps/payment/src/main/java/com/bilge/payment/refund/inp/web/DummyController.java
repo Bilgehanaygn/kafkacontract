@@ -1,4 +1,4 @@
-package com.bilge.payment.configuration;
+package com.bilge.payment.refund.inp.web;
 
 
 import org.springframework.web.bind.annotation.GetMapping;

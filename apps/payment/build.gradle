@@ -25,11 +25,26 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.28'
 
     //Contract test dependencies
-//    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
+    implementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner:4.0.0'
+    implementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier:4.0.0'
 
+    //Test Containers dependencies
+    implementation 'org.testcontainers:testcontainers'
+    implementation 'org.testcontainers:junit-jupiter'
+    implementation 'org.testcontainers:kafka'
+    implementation 'org.springframework.boot:spring-boot-testcontainers'
 }
 
 
 test {
     useJUnitPlatform()
+}
+
+
+tasks.named('integrationTest') {
+    useJUnitPlatform()
+//    testLogging {
+//        events "passed", "skipped", "failed"
+//        showStandardStreams = true
+//    }
 }
