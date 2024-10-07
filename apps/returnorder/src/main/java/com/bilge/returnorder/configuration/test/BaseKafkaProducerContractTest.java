@@ -1,6 +1,5 @@
 package com.bilge.returnorder.configuration.test;
 
-import com.bilge.returnorder.configuration.kafka.KafkaTopicsConfig;
 import com.bilge.returnorder.configuration.ReturnOrderProducer;
 import com.bilge.returnorder.returnorder.domain.ReturnOrderEvent;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +21,7 @@ import java.util.UUID;
 @AutoConfigureMessageVerifier
 @SpringBootTest(
   webEnvironment = SpringBootTest.WebEnvironment.NONE,
-  classes = {KafkaProducerTestConfig.class, KafkaTopicsConfig.class}
+  classes = {KafkaProducerTestConfig.class}
 )
 @Testcontainers
 @Import(ReturnOrderProducer.class)
