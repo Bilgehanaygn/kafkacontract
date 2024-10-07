@@ -41,7 +41,7 @@ public abstract class BaseKafkaProducerContractTest {
   }
 
   public void publishReturnOrderEvent() {
-    var returnOrderEvent = new ReturnOrderEvent(UUID.randomUUID(), UUID.randomUUID(), "random product 1", BigDecimal.TEN);
+    var returnOrderEvent = new ReturnOrderEvent(UUID.randomUUID(), UUID.randomUUID(), "randomproduct1", BigDecimal.TEN);
     returnOrderProducer.publishReturnOrderEvent(returnOrderEvent);
   }
 }
